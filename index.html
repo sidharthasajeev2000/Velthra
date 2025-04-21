@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Velthra | In Ruins We Rise</title>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&family=Inter&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #111;
+      color: #f0f0f0;
+    }
+
+    .hero {
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('velthra-bg.webp') no-repeat center center/cover;
+      transform: scale(1.05);
+      animation: zoomSlow 40s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    .fog {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300%;
+      height: 100%;
+      background: url('fog-layer.png') repeat-x;
+      background-size: contain;
+      opacity: 0.3;
+      animation: fogMove 60s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    #glyphs {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(2px);
+      z-index: 3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      max-width: 800px;
+      padding: 20px;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .hero h1 {
+      font-family: 'UnifrakturCook', serif;
+      font-size: 5rem;
+      letter-spacing: 5px;
+      color: #B00020;
+      text-shadow: 0 0 20px rgba(176, 0, 32, 0.6);
+      animation: glowPulse 3s infinite;
+    }
+
+    .catchphrase {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #B00020;
+      opacity: 0;
+      animation: fadeIn 3s ease 1.5s forwards;
+      text-shadow: 0 0 10px rgba(176, 0, 32, 0.3);
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      font-size: 2rem;
+      z-index: 4;
+      animation: bounce 2s infinite;
+      color: #B00020;
+    }
+
+    .button-group {
+      margin-top: 40px;
+    }
+
+    .button-group a {
+      background-color: #B00020;
+      color: white;
+      padding: 12px 28px;
+      margin: 10px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .button-group a:hover {
+      background-color: #8a001a;
+      transform: scale(1.05);
+    }
+
+    #relicBtn {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #B00020;
+  font-family: 'UnifrakturCook', serif;
+  font-size: 1.8rem;
+  border: none;
+  z-index: 10;
+  cursor: pointer;
+  box-shadow: none;
+  animation: floatUpLoop 20s linear infinite;
+}
+}
+
+    .relic-button:hover {
+      box-shadow: 0 0 20px rgba(255, 0, 64, 0.8);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .popup-panel {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 300px;
+      max-height: 400px;
+      background: rgba(24, 24, 24, 0.95);
+      color: #eee;
+      border: 1px solid #B00020;
+      border-radius: 10px;
+      padding: 20px;
+      z-index: 11;
+      box-shadow: 0 0 20px rgba(176, 0, 32, 0.6);
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .popup-panel h3 {
+      font-family: 'UnifrakturCook', serif;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #B00020;
+    }
+
+    .popup-panel p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #ccc;
+    }
+
+    #about {
+      padding: 80px 20px;
+      background: #181818;
+      text-align: center;
+    }
+
+    #about h2 {
+      font-family: 'UnifrakturCook', serif;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #B00020;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(176, 0, 32, 0.4);
+    }
+
+    #about p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #000;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+
+    @keyframes glowPulse {
+      0% { text-shadow: 0 0 10px rgba(176, 0, 32, 0.4); }
+      50% { text-shadow: 0 0 20px rgba(176, 0, 32, 0.9); }
+      100% { text-shadow: 0 0 10px rgba(176, 0, 32, 0.4); }
+    }
+
+    @keyframes zoomSlow {
+      0% { transform: scale(1.05); }
+      100% { transform: scale(1.1); }
+    }
+
+    @keyframes fogMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes floatUpLoop {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-60px); opacity: 0; }
+}
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="fog"></div>
+    <canvas id="glyphs"></canvas>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>VELTHRA</h1>
+      <div class="catchphrase">“In ruins we rise, in silence we remember, in Velthra we fight.”</div>
+      <div class="button-group">
+        <a href="chapter1.html">Read Chapter 1</a>
+        <a href="#about">About the World</a>
+      </div>
+    </div>
+    <div class="scroll-down">&#8595;</div>
+  </section>
+
+  <section id="about">
+    <h2>The World of Velthra</h2>
+    <p>
+      In a realm shattered by betrayal and darkness, the guardians of Velthra await a new spark.
+      Echoes of ancient magic whisper beneath the soil, and the blood-bound seal on the Book
+      of Truth pulses once more. Those who dare open it must face not just the world’s demons...
+      but their own.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Velthra. All rights reserved.
+  </footer>
+
+  <!-- Relic Rune Button -->
+  <button class="relic-button" onclick="togglePopup()" id="relicBtn">ᛊ</button>
+
+  <div id="popupPanel" class="popup-panel">
+    <h3>Ancient Relic Unlocked</h3>
+    <p>
+      The forgotten flame beneath Velthra’s ruins still burns. Bound by blood and magic, this relic remembers
+      what the world chose to forget. Those who awaken it must carry its story onward… or be consumed by it.
+    </p>
+  </div>
+
+  <script>
+    function togglePopup() {
+      const popup = document.getElementById('popupPanel');
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    }
+
+    const canvas = document.getElementById('glyphs');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const glyphs = [];
+    const numGlyphs = 40;
+
+    for (let i = 0; i < numGlyphs; i++) {
+      let charCode = 0x16A0 + Math.floor(Math.random() * 40);
+      if (i !== 0) {
+        glyphs.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 32 + 20,
+          baseSize: 0,
+          speed: Math.random() * 0.5 + 0.2,
+          opacity: Math.random() * 0.3 + 0.3,
+          pulseSpeed: Math.random() * 0.02 + 0.01,
+          angle: Math.random() * Math.PI * 2,
+          char: String.fromCharCode(charCode)
+        });
+      }
+    }
+
+    let glowFrame = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      glyphs.forEach(g => {
+        g.baseSize = g.size + Math.sin(g.angle) * 4;
+        ctx.font = `${g.baseSize}px 'UnifrakturCook', serif`;
+        ctx.fillStyle = `rgba(176, 0, 32, ${g.opacity})`;
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
+        ctx.fillText(g.char, g.x, g.y);
+        ctx.shadowBlur = 0;
+        g.y -= g.speed;
+        g.angle += g.pulseSpeed;
+        if (g.y < -20) {
+          g.y = canvas.height + 20;
+          g.x = Math.random() * canvas.width;
+        }
+      });
+      requestAnimationFrame(draw);
+    }
+
+    setTimeout(draw, 100);
+  setInterval(() => {
+  const btn = document.getElementById('relicBtn');
+  if (!btn) return;
+  const randomX = Math.random() * (window.innerWidth - 60); // button width offset
+  btn.style.left = `${randomX}px`;
+}, 20000);
+</script>
+</body>
+</html>
+
