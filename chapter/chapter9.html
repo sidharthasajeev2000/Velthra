@@ -1,1039 +1,195 @@
 <!DOCTYPE html>
- 
-
-
- 
-
- 
- 
-
-
- 
-
 <html lang="en">
- 
-
- 
- 
-
-
- 
-
 <head>
- 
-
- 
- 
-
-
- 
-
   <meta charset="UTF-8" />
- 
-
- 
- 
-
-
- 
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- 
-
- 
- 
-
-
- 
-
-  <title>Velthra | Chapter 2</title>
- 
-
- 
- 
-
-
- 
-
+  <title>Velthra | Chapter 9</title>
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&family=Inter&display=swap" rel="stylesheet">
- 
-
- 
- 
-
-
- 
-
   <style>
- 
-
- 
- 
-
-
- 
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
- 
-
- 
- 
-
-
- 
-
     body {
- 
-
- 
- 
-
-
- 
-
       background: url('../chapter-bg.webp') no-repeat center center fixed;
- 
-
- 
- 
-
-
- 
-
       background-size: cover;
- 
-
- 
- 
-
-
- 
-
       color: #f0f0f0;
- 
-
- 
- 
-
-
- 
-
       font-family: 'Inter', sans-serif;
- 
-
- 
- 
-
-
- 
-
-      overflow: hidden;
- 
-
- 
- 
-
-
- 
-
+      overflow: auto;
+      scroll-behavior: smooth;
     }
- 
-
- 
- 
-
-
- 
-
     .container {
- 
-
- 
- 
-
-
- 
-
       position: relative;
- 
-
- 
- 
-
-
- 
-
-      height: 100vh;
- 
-
- 
- 
-
-
- 
-
+      min-height: 100vh;
       width: 100vw;
- 
-
- 
- 
-
-
- 
-
       display: flex;
- 
-
- 
- 
-
-
- 
-
       justify-content: center;
- 
-
- 
- 
-
-
- 
-
       align-items: center;
- 
-
- 
- 
-
-
- 
-
       flex-direction: column;
- 
-
- 
- 
-
-
- 
-
       text-align: center;
- 
-
- 
- 
-
-
- 
-
       z-index: 1;
- 
-
- 
- 
-
-
- 
-
+      padding: 40px 20px;
     }
- 
-
- 
- 
-
-
- 
-
-    .coin {
- 
-
- 
- 
-
-
- 
-
-      width: 250px;
- 
-
- 
- 
-
-
- 
-
-      height: 250px;
- 
-
- 
- 
-
-
- 
-
-      background: url('../velthra-coin.png') no-repeat center center/contain;
- 
-
- 
- 
-
-
- 
-
-      background-color: transparent;
- 
-
- 
- 
-
-
- 
-
-      animation: spin 20s linear infinite;
- 
-
- 
- 
-
-
- 
-
-      margin-bottom: 30px;
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
-    #countdown {
- 
-
- 
- 
-
-
- 
-
-      font-size: 2rem;
- 
-
- 
- 
-
-
- 
-
-      color: #B00020;
- 
-
- 
- 
-
-
- 
-
-      font-family: 'UnifrakturCook', serif;
- 
-
- 
- 
-
-
- 
-
-      text-shadow: 0 0 10px rgba(176, 0, 32, 0.4);
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
     .chapter {
- 
-
- 
- 
-
-
- 
-
-      opacity: 0;
- 
-
- 
- 
-
-
- 
-
-      transition: opacity 2s ease;
- 
-
- 
- 
-
-
- 
-
       max-width: 800px;
- 
-
- 
- 
-
-
- 
-
-      padding: 20px;
- 
-
- 
- 
-
-
- 
-
+      text-align: left;
       font-size: 1.1rem;
- 
-
- 
- 
-
-
- 
-
       line-height: 1.6;
- 
-
- 
- 
-
-
- 
-
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
     }
- 
-
- 
- 
-
-
- 
-
     .chapter h2 {
- 
-
- 
- 
-
-
- 
-
       font-family: 'UnifrakturCook', serif;
- 
-
- 
- 
-
-
- 
-
       font-size: 2.5rem;
- 
-
- 
- 
-
-
- 
-
       color: #B00020;
- 
-
- 
- 
-
-
- 
-
       margin-bottom: 20px;
- 
-
- 
- 
-
-
- 
-
+      text-align: center;
     }
- 
-
- 
- 
-
-
- 
-
-    .overlay {
- 
-
- 
- 
-
-
- 
-
-      position: absolute;
- 
-
- 
- 
-
-
- 
-
-      top: 0;
- 
-
- 
- 
-
-
- 
-
-      left: 0;
- 
-
- 
- 
-
-
- 
-
-      width: 100%;
- 
-
- 
- 
-
-
- 
-
-      height: 100%;
- 
-
- 
- 
-
-
- 
-
-      background: rgba(0, 0, 0, 0.1);
- 
-
- 
- 
-
-
- 
-
-      z-index: 0;
- 
-
- 
- 
-
-
- 
-
+    .chapter p {
+      margin-bottom: 16px;
     }
- 
-
- 
- 
-
-
- 
-
-    @keyframes spin {
- 
-
- 
- 
-
-
- 
-
-      from { transform: rotateY(0deg); }
- 
-
- 
- 
-
-
- 
-
-      to { transform: rotateY(360deg); }
- 
-
- 
- 
-
-
- 
-
+    .chapter blockquote {
+      font-style: italic;
+      margin: 16px 0;
+      color: #ccc;
     }
- 
-
- 
- 
-
-
- 
-
+    .nav-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 25px;
+      background-color: #B00020;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
   </style>
- 
-
- 
- 
-
-
- 
-
 </head>
- 
-
- 
- 
-
-
- 
-
 <body>
- 
-
- 
- 
-
-
- 
-
-  <div class="overlay"></div>
- 
-
- 
- 
-
-
- 
-
   <div class="container">
- 
+    <a href="../index.html" class="nav-button">🏠 Home</a>
+    <a href="chapter8.html" class="nav-button">← Back to Chapter 8</a>
 
- 
- 
+    <div class="chapter">
+      <h2>VELTHRA<br>Chapter 9 – New Rooms, Old Troubles</h2>
 
+      <p>The courtyard buzzed with first-years crowding around the massive digital noticeboard. Names, dorm numbers, and class assignments flickered across the screen.</p>
 
- 
+      <p>Kael barely got a look before a cheerful volunteer stepped in front of him.</p>
 
-    <div class="coin"></div>
- 
+      <blockquote>“Kael, right? Come with me. You’re being escorted to your dorm.”</blockquote>
 
- 
- 
+      <p>He followed, weaving past excited students and confused parents until they stopped before a grand door etched with his name. The metal shimmered with some kind of nano-light.</p>
 
+      <blockquote>“Wait, this is mine?” Kael blinked.</blockquote>
 
- 
+      <p>Inside, the room looked like a mini-suite—sunlight through tall windows, a desk loaded with orientation material, and a neatly folded uniform resting on his bed.</p>
 
-    <div id="countdown"></div>
- 
+      <blockquote>“These aren’t mine… is this my roommate’s?” he asked, scratching his head.</blockquote>
 
- 
- 
+      <p>The volunteer chuckled.</p>
 
+      <blockquote>“Nope. All yours. You don’t have roommates.”</blockquote>
 
- 
+      <p>Kael turned to her, still stunned. She grinned and stuck out a hand.</p>
 
-    <div class="chapter" id="chapter">
- 
+      <blockquote>“Name’s Fia. And here, we don’t use family names. Academy rule to promote equality.”</blockquote>
 
- 
- 
+      <blockquote>“Ah,” Kael nodded. “Well… thanks, Fia.”</blockquote>
 
+      <p>She tilted her head, smiling gently.</p>
 
- 
+      <blockquote>“You know, with your combat rank, I expected someone fierce. But you’re kind of a sweetcake.”</blockquote>
 
-      <h2>Chapter two: Echoes Beneath the Ash</h2>
- 
+      <p>Kael’s ears turned pink.</p>
 
- 
- 
+      <blockquote>“This room’s bigger than my whole dorm back at the orphanage…”</blockquote>
 
+      <p>That stopped Fia in her tracks for a moment. Then she ruffled his hair.</p>
 
- 
+      <blockquote>“You earned it. Be proud of yourself.”</blockquote>
 
-      <p>
- 
+      <p>She ran him through the dorm rules, then added with a playful wink:</p>
 
- 
- 
+      <blockquote>“And if you ever need help, feel free to call me. Being asked for help by a cute junior isn’t the worst thing in the world.”</blockquote>
 
+      <p>Kael mumbled something awkward, still stunned by the sheer luxury around him.</p>
 
- 
+      <blockquote>“Freshen up and head to the mess. Dinner’s hot and the gossip’s hotter,” she said before disappearing down the hall.</blockquote>
 
-        The silence of the ruins was deafening. Where once stood towers kissed by the sky,
- 
+      <p>Kael sat on his bed, still unsure if he belonged here.</p>
 
- 
- 
+      <blockquote>“Man… I feel so out of place. Would’ve been nice if I could’ve shared this with the others.”</blockquote>
 
+      <p>Meanwhile, on the opposite end of the dormitory…</p>
 
- 
+      <blockquote>“Oh YEAH, baby! We’re in the same dorm!” Calvin fist-pumped, tossing his bag onto a bunk.</blockquote>
 
-        now only broken spires whispered to the wind. Deep beneath the surface, the relic stirred...
- 
+      <blockquote>“Later,” Rio muttered, scanning his dorm number. “Let’s check Kael’s room later. I heard it’s like a suite.”</blockquote>
 
- 
- 
+      <blockquote>“Wait…” Calvin squinted at the dorm listings.</blockquote>
 
+      <blockquote>“Oh no.”</blockquote>
 
- 
+      <blockquote>“What?” Rio asked.</blockquote>
 
-      </p>
- 
+      <blockquote>“We’re doomed,” Calvin said flatly, pointing.</blockquote>
 
- 
- 
+      <p>Next to their names was a third: Trollin.</p>
 
+      <blockquote>“No. No no no,” Rio muttered. “We are so screwed.”</blockquote>
 
- 
+      <p>The mood on the walk to their room was... grim.</p>
 
+      <blockquote>Rio: “Trollin’s our roommate? Fantastic. Hope he doesn’t cheat his way into my locker too.”</blockquote>
+      <blockquote>Calvin (pulling out a squashed snack bar): “Yeah… no. He won’t.”</blockquote>
+      <blockquote>Rio (frowning): “You were arguing with him five hours ago.”</blockquote>
+      <blockquote>Calvin (shrugging): “Yeah, I argue with the mirror every morning too. Doesn’t mean I don’t respect it.”</blockquote>
+      <blockquote>Rio (blinking): “You’re saying you respect Trollin?”</blockquote>
+      <blockquote>Calvin (serious now): “He’s a pain. Arrogant. Anger issues deluxe. But he never cheats. Ever.”</blockquote>
+      <blockquote>Rio (quiet): “You sure?”</blockquote>
+      <blockquote>Calvin (nodding, tossing him a snack bar): “Watched him in training. Broke his collarbone once rather than break a rule. He’d rather lose clean.”</blockquote>
+      <blockquote>Rio (softening): “Still the biggest pain on campus.”</blockquote>
+      <blockquote>Calvin (grinning): “Second biggest. I still hold that crown.”</blockquote>
+      <blockquote>Rio (grinning): “So you know that you are a little jerk.”</blockquote>
+
+      <p>When they reached the room, the door was ajar.</p>
+
+      <p>Trollin stood inside, arms crossed, glaring at the two like they’d tracked mud across his soul.</p>
+
+      <blockquote>“Oh great,” he muttered. “Why are the gods testing me like this?”</blockquote>
+
+      <p>Calvin pushed the door open with a smile. “Because they love me.”</p>
+
+      <p>Rio slunk in behind him, deadpan as ever.</p>
+
+      <p>Trollin looked at the dorm sheet, then at them.</p>
+
+      <blockquote>“You’re kidding.”</blockquote>
+      <blockquote>“Nope,” Calvin said, tossing his bag onto the bed. “Roomies.”</blockquote>
+      <blockquote>“I’m cursed.”</blockquote>
+
+      <p>Rio slid into his bunk and whispered to Calvin, “You sure he won’t murder us in our sleep?”</p>
+
+      <p>“Pretty sure,” Calvin replied. “Ninety percent.”</p>
+
+      <p>Trollin shot them both a look. “Just stay out of my way.”</p>
+
+      <p>“Wouldn’t dream of it, now sixty percent.” Calvin said, already putting up a dartboard on the closet door.</p>
+
+      <p>The silence that followed was loud and awkward—but not hostile. Somehow, between shared chaos and bruised egos, a strange balance had settled.</p>
+
+      <p>Back in Kael’s room, the lights dimmed to a warm glow. Outside, the academy bell chimed softly in the wind. He leaned back on the bed, letting the day finally settle in his bones.</p>
+
+      <p>For the first time in a long time, he felt something close to peace.</p>
+
+      <p>Even if tomorrow promised nothing but trouble.</p>
     </div>
- 
 
- 
- 
-
-
- 
-
+    <a href="chapter10.html" class="nav-button">Next Chapter →</a>
   </div>
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-  <script>
- 
-
- 
- 
-
-
- 
-
-    const targetDate = new Date();
- 
-
- 
- 
-
-
- 
-
-    targetDate.setDate(targetDate.getDate() + 1);
- 
-
- 
- 
-
-
- 
-
-    targetDate.setHours(0, 0, 0, 0);
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    const countdownEl = document.getElementById('countdown');
- 
-
- 
- 
-
-
- 
-
-    const chapterEl = document.getElementById('chapter');
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    function updateCountdown() {
- 
-
- 
- 
-
-
- 
-
-      const now = new Date().getTime();
- 
-
- 
- 
-
-
- 
-
-      const distance = targetDate - now;
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      if (distance <= 0) {
- 
-
- 
- 
-
-
- 
-
-        countdownEl.style.display = 'none';
- 
-
- 
- 
-
-
- 
-
-        chapterEl.style.opacity = 1;
- 
-
- 
- 
-
-
- 
-
-        document.querySelector('.coin').style.display = 'none';
- 
-
- 
- 
-
-
- 
-
-        return;
- 
-
- 
- 
-
-
- 
-
-      }
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
- 
-
- 
- 
-
-
- 
-
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
- 
-
- 
- 
-
-
- 
-
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
- 
-
- 
- 
-
-
- 
-
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    updateCountdown();
- 
-
- 
- 
-
-
- 
-
-    setInterval(updateCountdown, 1000);
- 
-
- 
- 
-
-
- 
-
-  </script>
- 
-
- 
- 
-
-
- 
-
 </body>
- 
-
- 
- 
-
-
- 
-
 </html>
+
