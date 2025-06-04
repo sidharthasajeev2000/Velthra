@@ -1,1039 +1,168 @@
 <!DOCTYPE html>
- 
-
-
- 
-
- 
- 
-
-
- 
-
 <html lang="en">
- 
-
- 
- 
-
-
- 
-
 <head>
- 
-
- 
- 
-
-
- 
-
   <meta charset="UTF-8" />
- 
-
- 
- 
-
-
- 
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- 
-
- 
- 
-
-
- 
-
-  <title>Velthra | Chapter 2</title>
- 
-
- 
- 
-
-
- 
-
+  <title>Velthra | Chapter 10</title>
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&family=Inter&display=swap" rel="stylesheet">
- 
-
- 
- 
-
-
- 
-
   <style>
- 
-
- 
- 
-
-
- 
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
- 
-
- 
- 
-
-
- 
-
     body {
- 
-
- 
- 
-
-
- 
-
       background: url('../chapter-bg.webp') no-repeat center center fixed;
- 
-
- 
- 
-
-
- 
-
       background-size: cover;
- 
-
- 
- 
-
-
- 
-
       color: #f0f0f0;
- 
-
- 
- 
-
-
- 
-
       font-family: 'Inter', sans-serif;
- 
-
- 
- 
-
-
- 
-
-      overflow: hidden;
- 
-
- 
- 
-
-
- 
-
+      overflow: auto;
+      scroll-behavior: smooth;
     }
- 
-
- 
- 
-
-
- 
-
     .container {
- 
-
- 
- 
-
-
- 
-
       position: relative;
- 
-
- 
- 
-
-
- 
-
-      height: 100vh;
- 
-
- 
- 
-
-
- 
-
+      min-height: 100vh;
       width: 100vw;
- 
-
- 
- 
-
-
- 
-
       display: flex;
- 
-
- 
- 
-
-
- 
-
       justify-content: center;
- 
-
- 
- 
-
-
- 
-
       align-items: center;
- 
-
- 
- 
-
-
- 
-
       flex-direction: column;
- 
-
- 
- 
-
-
- 
-
       text-align: center;
- 
-
- 
- 
-
-
- 
-
       z-index: 1;
- 
-
- 
- 
-
-
- 
-
+      padding: 40px 20px;
     }
- 
-
- 
- 
-
-
- 
-
-    .coin {
- 
-
- 
- 
-
-
- 
-
-      width: 250px;
- 
-
- 
- 
-
-
- 
-
-      height: 250px;
- 
-
- 
- 
-
-
- 
-
-      background: url('../velthra-coin.png') no-repeat center center/contain;
- 
-
- 
- 
-
-
- 
-
-      background-color: transparent;
- 
-
- 
- 
-
-
- 
-
-      animation: spin 20s linear infinite;
- 
-
- 
- 
-
-
- 
-
-      margin-bottom: 30px;
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
-    #countdown {
- 
-
- 
- 
-
-
- 
-
-      font-size: 2rem;
- 
-
- 
- 
-
-
- 
-
-      color: #B00020;
- 
-
- 
- 
-
-
- 
-
-      font-family: 'UnifrakturCook', serif;
- 
-
- 
- 
-
-
- 
-
-      text-shadow: 0 0 10px rgba(176, 0, 32, 0.4);
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
     .chapter {
- 
-
- 
- 
-
-
- 
-
-      opacity: 0;
- 
-
- 
- 
-
-
- 
-
-      transition: opacity 2s ease;
- 
-
- 
- 
-
-
- 
-
       max-width: 800px;
- 
-
- 
- 
-
-
- 
-
-      padding: 20px;
- 
-
- 
- 
-
-
- 
-
+      text-align: left;
       font-size: 1.1rem;
- 
-
- 
- 
-
-
- 
-
       line-height: 1.6;
- 
-
- 
- 
-
-
- 
-
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
     }
- 
-
- 
- 
-
-
- 
-
     .chapter h2 {
- 
-
- 
- 
-
-
- 
-
       font-family: 'UnifrakturCook', serif;
- 
-
- 
- 
-
-
- 
-
       font-size: 2.5rem;
- 
-
- 
- 
-
-
- 
-
       color: #B00020;
- 
-
- 
- 
-
-
- 
-
       margin-bottom: 20px;
- 
-
- 
- 
-
-
- 
-
+      text-align: center;
     }
- 
-
- 
- 
-
-
- 
-
-    .overlay {
- 
-
- 
- 
-
-
- 
-
-      position: absolute;
- 
-
- 
- 
-
-
- 
-
-      top: 0;
- 
-
- 
- 
-
-
- 
-
-      left: 0;
- 
-
- 
- 
-
-
- 
-
-      width: 100%;
- 
-
- 
- 
-
-
- 
-
-      height: 100%;
- 
-
- 
- 
-
-
- 
-
-      background: rgba(0, 0, 0, 0.1);
- 
-
- 
- 
-
-
- 
-
-      z-index: 0;
- 
-
- 
- 
-
-
- 
-
+    .chapter p {
+      margin-bottom: 16px;
     }
- 
-
- 
- 
-
-
- 
-
-    @keyframes spin {
- 
-
- 
- 
-
-
- 
-
-      from { transform: rotateY(0deg); }
- 
-
- 
- 
-
-
- 
-
-      to { transform: rotateY(360deg); }
- 
-
- 
- 
-
-
- 
-
+    .chapter blockquote {
+      font-style: italic;
+      margin: 16px 0;
+      color: #ccc;
     }
- 
-
- 
- 
-
-
- 
-
+    .nav-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 25px;
+      background-color: #B00020;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
   </style>
- 
-
- 
- 
-
-
- 
-
 </head>
- 
-
- 
- 
-
-
- 
-
 <body>
- 
-
- 
- 
-
-
- 
-
-  <div class="overlay"></div>
- 
-
- 
- 
-
-
- 
-
   <div class="container">
- 
+    <a href="../index.html" class="nav-button">🏠 Home</a>
+    <a href="chapter9.html" class="nav-button">← Back to Chapter 9</a>
 
- 
- 
+    <div class="chapter">
+      <h2>VELTHRA<br>Chapter 10 – Mornings and Mayhem</h2>
 
-
- 
-
-    <div class="coin"></div>
- 
-
- 
- 
-
-
- 
-
-    <div id="countdown"></div>
- 
-
- 
- 
-
-
- 
-
-    <div class="chapter" id="chapter">
- 
-
- 
- 
-
-
- 
-
-      <h2>Chapter two: Echoes Beneath the Ash</h2>
- 
-
- 
- 
-
-
- 
-
-      <p>
- 
-
- 
- 
-
-
- 
-
-        The silence of the ruins was deafening. Where once stood towers kissed by the sky,
- 
-
- 
- 
-
-
- 
-
-        now only broken spires whispered to the wind. Deep beneath the surface, the relic stirred...
- 
-
- 
- 
-
-
- 
-
-      </p>
- 
-
- 
- 
-
-
- 
-
+      <p>Velmira stepped into the classroom, not expecting much — maybe a few familiar faces at best. But as her eyes swept across the room, she smiled.</p>
+      <p>There they were. Squad C-7.</p>
+      <p>Well… what was left of them.</p>
+      <p>Kael and Rio were slumped over their desks, completely drained — and it wasn’t even second period. Behind them, of course, Calvin was somehow still full of energy, already chatting up a group of girls like it was a party.</p>
+      <p>Velmira rolled her eyes, walked straight up to him, and knocked him on the head.</p>
+      <blockquote>“Ow! What was that for?” Calvin grinned.</blockquote>
+      <blockquote>“Sit. Now,” she ordered, dragging him to the seat beside her.</blockquote>
+      <p>She gestured toward the two half-dead boys. “What happened to them? It’s the first class of the day.”</p>
+      <p>Calvin shrugged dramatically. “Kael’s wiped because he had to spend time with a beautiful queen. And Rio? He’s got a new roommate who just wore him out.”</p>
+      <blockquote>“THAT’S NOT WHAT HAPPENED!” Kael and Rio shouted at the same time, heads snapping up in protest.</blockquote>
+      <p>Velmira laughed. “Oh really? Do tell. I’m very interested now.”</p>
+      <p>Rio jumped in like he’d been waiting for someone to ask. “It’s because of your boyfriend and your brother! Those two spent the entire night trying to murder each other and I’m stuck between them!”</p>
+      <p>“He’s exaggerating,” Calvin muttered.</p>
+      <p>“No I’m not!” Rio snapped. “It’s like putting a cat and mouse in the same room — and the mouse has a death wish! Calvin lives to annoy him!”</p>
+      <p>Velmira tried to calm him down, holding in a laugh. “Okay, okay. So what actually happened?”</p>
+      <p>Calvin gave her a sly grin. “Trollin’s our roommate.”</p>
+      <p>Velmira groaned. “And?”</p>
+      <p>“This idiot drew on his face with a marker this morning,” Rio said, glaring at Calvin. “First thing. While he was asleep.”</p>
+      <p>“I mean, it was funny,” Calvin said, trying to defend himself.</p>
+      <p>“He could’ve killed you.”</p>
+      <p>They all looked over at Trollin, who still had faint smudges on his face from the “marker war.” He was scowling, arms crossed, looking like he was planning revenge.</p>
+      <p>Velmira shook her head, then turned to Kael. “Alright. I get their problems. But you? You don’t seem like the prankster type.”</p>
+      <p>Kael sighed like someone who had aged ten years overnight. “I’ve got a beautiful neighbor.”</p>
+      <blockquote>“…That’s a problem?”</blockquote>
+      <p>“It wouldn’t be,” he said, gesturing behind him, “if she didn’t keep threatening me.”</p>
+      <p>Velmira followed his finger.</p>
+      <p>There she was — Selene, sitting with all the grace and chill of royalty… except for the part where she was shooting silent daggers from her eyes directly at Kael.</p>
+      <p>“She found out we’re next-door dormmates this morning,” Kael added. “And ever since, it’s been ‘I’ll defeat you,’ ‘Your days are numbered,’ ‘Don’t get too comfortable.’ I haven’t even done anything!”</p>
+      <p>Velmira stared, then started giggling. “You’ve had the worst morning out of everyone here. I almost feel bad.”</p>
+      <blockquote>“Almost?” Kael muttered.</blockquote>
+      <p>Before she could reply, the door opened — the instructor stepped in.</p>
+      <p>And just like that, chaos turned to silence.</p>
+      <p>A soft click of heels echoed across the classroom floor as a poised woman stepped in. Her silver-rimmed glasses caught the morning light, and the entire room instinctively straightened.</p>
+      <blockquote>“I am Miss Diya Fernsworth, your new homeroom teacher,” she announced, voice smooth yet firm. “I’ll be teaching you the History and Social Structure of the Federation.”</blockquote>
+      <p>Her gaze swept the class with quiet authority before briefly locking onto two students.</p>
+      <blockquote>“We have some heavy hitters this year,” she added, eyes flicking toward Kael and Selene.</blockquote>
+      <p>A quiet murmur passed through the room.</p>
+      <blockquote>“First,” she continued, “we need to assign a class representative. Any volunteers?”</blockquote>
+      <p>Without hesitation, Selene stood up, posture flawless. “I’d like to volunteer.”</p>
+      <p>No one objected — but no one clapped either. She was powerful, sure. Respected. But there was an unspoken wall between her and the rest of the class — the way she looked at them said it all: beneath me.</p>
+      <p>Miss Diya gave a nod. “Selene Ferncross, class rep from the girls’ side. Now, from the boys?”</p>
+      <p>Before anyone else could react, Calvin’s hand shot up with signature flair.</p>
+      <p>Without missing a beat, the teacher said dryly, “We’re asking for class rep volunteers, not comedy club applicants. Calvin, I saw what you did during the entrance exam.”</p>
+      <p>The class burst into quiet laughter. Calvin scratched his head sheepishly. “Okay, okay, fair. But I’m serious this time.”</p>
+      <p>Miss Diya raised an eyebrow. “Go on.”</p>
+      <p>“I want to nominate Kael. He topped the combat rankings. He’s got the respect.”</p>
+      <p>Kael, caught off guard, waved his hands rapidly. “No, no — Calvin, cut it out—!”</p>
+      <p>Amidst the mess, Calvin happened to glance back — and noticed something odd.</p>
+      <p>Trollin, silent in the back row, had started to raise his hand… then slowly pulled it down when Kael’s name was mentioned.</p>
+      <p>Miss Diya turned to Kael. “Would you accept the nomination?”</p>
+      <p>Kael stood, uncertain but composed.</p>
+      <blockquote>“I appreciate it,” he began, “but… I don’t think leading is just about being good at fighting.”</blockquote>
+      <p>He paused, his gaze finding Trollin.</p>
+      <blockquote>“In our match, he led his team with focus and strategy. We only won by luck. If leadership means anything, it’s about guiding people, not just overpowering them. So… I nominate Trollin.”</blockquote>
+      <p>Silence.</p>
+      <p>Then, suddenly—applause. A few claps turned into an overwhelming roar.</p>
+      <p>Trollin sat stunned as the class erupted around him — students cheering, some even standing. The moment was his.</p>
+      <p>Selene, still standing, sat down slowly. Her face remained calm, but her fingers tapped softly against her desk — sharp, deliberate beats.</p>
+      <p>Kael stepped forward and extended a hand.</p>
+      <blockquote>“Good luck, Class Rep.”</blockquote>
+      <p>Trollin stared at it for a second — then took it in a firm shake. No words, just understanding.</p>
+      <p>As Kael walked back, Miss Diya leaned in with a faint smile. “You know how to lead too. Not just fight.”</p>
+      <p>Kael replied, “Let him enjoy this,” and slid into his seat.</p>
+      <p>Velmira leaned over, whispering, “Thank you.”</p>
+      <p>Kael gave a small nod.</p>
+      <p>Calvin blinked, then muttered, “Who are you and what did you do with Kael?”</p>
+      <p>Kael just smiled.</p>
+      <p>Miss Diya clapped once. “Back to your seats, everyone.”</p>
+      <p>The room quieted as she turned to the board.</p>
+      <blockquote>“Today’s lesson: the Beyonders — mutant beings who once ravaged the outer zones of our continent. Creatures of chaos and power, nearly wiped us from history. It was the Founding Three who pushed them back and established the Federation we live in today.”</blockquote>
+      <p>She paced slowly across the front of the room.</p>
+      <blockquote>“But the Beyonders are not our only threat.”</blockquote>
+      <p>Kael raised a hand. “What else is out there?”</p>
+      <p>Miss Diya’s expression sharpened.</p>
+      <blockquote>“There is another group. Not monsters — people. Rebels. Outlaws. They attack our convoys, disrupt our supply chains, and sabotage our systems. They oppose everything the Federation stands for.”</blockquote>
+      <p>A chill moved through the room.</p>
+      <blockquote>“They’re led by a man no one’s seen clearly. Some say he once stood alone on the Black Cliffs when an entire Beyonder warpack descended… and survived.”</blockquote>
+      <p>Gasps.</p>
+      <blockquote>“He didn’t just survive,” she added. “He fought back. Without Federation tech. Without support. We don’t know how he lived, but we know this — he's dangerous.”</blockquote>
+      <p>The room sat still — every student quiet, tense.</p>
+      <blockquote>“He and the Beyonders may be enemies of each other,” she said, “but they’re both enemies of us.”</blockquote>
+      <p>A heavy silence followed.</p>
+      <p>It wasn’t the kind of silence born of confusion — it was the kind that came from conviction.</p>
+      <p>And that was how the lesson began.</p>
     </div>
- 
 
- 
- 
-
-
- 
-
+    <a href="chapter11.html" class="nav-button">Next Chapter →</a>
   </div>
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-  <script>
- 
-
- 
- 
-
-
- 
-
-    const targetDate = new Date();
- 
-
- 
- 
-
-
- 
-
-    targetDate.setDate(targetDate.getDate() + 1);
- 
-
- 
- 
-
-
- 
-
-    targetDate.setHours(0, 0, 0, 0);
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    const countdownEl = document.getElementById('countdown');
- 
-
- 
- 
-
-
- 
-
-    const chapterEl = document.getElementById('chapter');
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    function updateCountdown() {
- 
-
- 
- 
-
-
- 
-
-      const now = new Date().getTime();
- 
-
- 
- 
-
-
- 
-
-      const distance = targetDate - now;
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      if (distance <= 0) {
- 
-
- 
- 
-
-
- 
-
-        countdownEl.style.display = 'none';
- 
-
- 
- 
-
-
- 
-
-        chapterEl.style.opacity = 1;
- 
-
- 
- 
-
-
- 
-
-        document.querySelector('.coin').style.display = 'none';
- 
-
- 
- 
-
-
- 
-
-        return;
- 
-
- 
- 
-
-
- 
-
-      }
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
- 
-
- 
- 
-
-
- 
-
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
- 
-
- 
- 
-
-
- 
-
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
- 
-
- 
- 
-
-
- 
-
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    updateCountdown();
- 
-
- 
- 
-
-
- 
-
-    setInterval(updateCountdown, 1000);
- 
-
- 
- 
-
-
- 
-
-  </script>
- 
-
- 
- 
-
-
- 
-
 </body>
- 
-
- 
- 
-
-
- 
-
 </html>
+
