@@ -1,1039 +1,156 @@
 <!DOCTYPE html>
- 
-
-
- 
-
- 
- 
-
-
- 
-
 <html lang="en">
- 
-
- 
- 
-
-
- 
-
 <head>
- 
-
- 
- 
-
-
- 
-
   <meta charset="UTF-8" />
- 
-
- 
- 
-
-
- 
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- 
-
- 
- 
-
-
- 
-
-  <title>Velthra | Chapter 2</title>
- 
-
- 
- 
-
-
- 
-
+  <title>Velthra | Chapter 11</title>
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&family=Inter&display=swap" rel="stylesheet">
- 
-
- 
- 
-
-
- 
-
   <style>
- 
-
- 
- 
-
-
- 
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
- 
-
- 
- 
-
-
- 
-
     body {
- 
-
- 
- 
-
-
- 
-
       background: url('../chapter-bg.webp') no-repeat center center fixed;
- 
-
- 
- 
-
-
- 
-
       background-size: cover;
- 
-
- 
- 
-
-
- 
-
       color: #f0f0f0;
- 
-
- 
- 
-
-
- 
-
       font-family: 'Inter', sans-serif;
- 
-
- 
- 
-
-
- 
-
-      overflow: hidden;
- 
-
- 
- 
-
-
- 
-
+      overflow: auto;
+      scroll-behavior: smooth;
     }
- 
-
- 
- 
-
-
- 
-
     .container {
- 
-
- 
- 
-
-
- 
-
       position: relative;
- 
-
- 
- 
-
-
- 
-
-      height: 100vh;
- 
-
- 
- 
-
-
- 
-
+      min-height: 100vh;
       width: 100vw;
- 
-
- 
- 
-
-
- 
-
       display: flex;
- 
-
- 
- 
-
-
- 
-
       justify-content: center;
- 
-
- 
- 
-
-
- 
-
       align-items: center;
- 
-
- 
- 
-
-
- 
-
       flex-direction: column;
- 
-
- 
- 
-
-
- 
-
       text-align: center;
- 
-
- 
- 
-
-
- 
-
       z-index: 1;
- 
-
- 
- 
-
-
- 
-
+      padding: 40px 20px;
     }
- 
-
- 
- 
-
-
- 
-
-    .coin {
- 
-
- 
- 
-
-
- 
-
-      width: 250px;
- 
-
- 
- 
-
-
- 
-
-      height: 250px;
- 
-
- 
- 
-
-
- 
-
-      background: url('../velthra-coin.png') no-repeat center center/contain;
- 
-
- 
- 
-
-
- 
-
-      background-color: transparent;
- 
-
- 
- 
-
-
- 
-
-      animation: spin 20s linear infinite;
- 
-
- 
- 
-
-
- 
-
-      margin-bottom: 30px;
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
-    #countdown {
- 
-
- 
- 
-
-
- 
-
-      font-size: 2rem;
- 
-
- 
- 
-
-
- 
-
-      color: #B00020;
- 
-
- 
- 
-
-
- 
-
-      font-family: 'UnifrakturCook', serif;
- 
-
- 
- 
-
-
- 
-
-      text-shadow: 0 0 10px rgba(176, 0, 32, 0.4);
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
     .chapter {
- 
-
- 
- 
-
-
- 
-
-      opacity: 0;
- 
-
- 
- 
-
-
- 
-
-      transition: opacity 2s ease;
- 
-
- 
- 
-
-
- 
-
       max-width: 800px;
- 
-
- 
- 
-
-
- 
-
-      padding: 20px;
- 
-
- 
- 
-
-
- 
-
+      text-align: left;
       font-size: 1.1rem;
- 
-
- 
- 
-
-
- 
-
       line-height: 1.6;
- 
-
- 
- 
-
-
- 
-
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
     }
- 
-
- 
- 
-
-
- 
-
     .chapter h2 {
- 
-
- 
- 
-
-
- 
-
       font-family: 'UnifrakturCook', serif;
- 
-
- 
- 
-
-
- 
-
       font-size: 2.5rem;
- 
-
- 
- 
-
-
- 
-
       color: #B00020;
- 
-
- 
- 
-
-
- 
-
       margin-bottom: 20px;
- 
-
- 
- 
-
-
- 
-
+      text-align: center;
     }
- 
-
- 
- 
-
-
- 
-
-    .overlay {
- 
-
- 
- 
-
-
- 
-
-      position: absolute;
- 
-
- 
- 
-
-
- 
-
-      top: 0;
- 
-
- 
- 
-
-
- 
-
-      left: 0;
- 
-
- 
- 
-
-
- 
-
-      width: 100%;
- 
-
- 
- 
-
-
- 
-
-      height: 100%;
- 
-
- 
- 
-
-
- 
-
-      background: rgba(0, 0, 0, 0.1);
- 
-
- 
- 
-
-
- 
-
-      z-index: 0;
- 
-
- 
- 
-
-
- 
-
+    .chapter p {
+      margin-bottom: 16px;
     }
- 
-
- 
- 
-
-
- 
-
-    @keyframes spin {
- 
-
- 
- 
-
-
- 
-
-      from { transform: rotateY(0deg); }
- 
-
- 
- 
-
-
- 
-
-      to { transform: rotateY(360deg); }
- 
-
- 
- 
-
-
- 
-
+    .chapter blockquote {
+      font-style: italic;
+      margin: 16px 0;
+      color: #ccc;
     }
- 
-
- 
- 
-
-
- 
-
+    .nav-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 25px;
+      background-color: #B00020;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
   </style>
- 
-
- 
- 
-
-
- 
-
 </head>
- 
-
- 
- 
-
-
- 
-
 <body>
- 
-
- 
- 
-
-
- 
-
-  <div class="overlay"></div>
- 
-
- 
- 
-
-
- 
-
   <div class="container">
- 
+    <a href="../index.html" class="nav-button">🏠 Home</a>
+    <a href="chapter10.html" class="nav-button">← Back to Chapter 10</a>
 
- 
- 
+    <div class="chapter">
+      <h2>VELTHRA<br>Chapter 11 – Juice, Drama, and a Death Wish</h2>
 
-
- 
-
-    <div class="coin"></div>
- 
-
- 
- 
-
-
- 
-
-    <div id="countdown"></div>
- 
-
- 
- 
-
-
- 
-
-    <div class="chapter" id="chapter">
- 
-
- 
- 
-
-
- 
-
-      <h2>Chapter two: Echoes Beneath the Ash</h2>
- 
-
- 
- 
-
-
- 
-
-      <p>
- 
-
- 
- 
-
-
- 
-
-        The silence of the ruins was deafening. Where once stood towers kissed by the sky,
- 
-
- 
- 
-
-
- 
-
-        now only broken spires whispered to the wind. Deep beneath the surface, the relic stirred...
- 
-
- 
- 
-
-
- 
-
-      </p>
- 
-
- 
- 
-
-
- 
-
+      <p>The canteen was alive with chaos — clattering trays, food flying in corners, students shouting across tables like it was a gladiator arena of lunchtime politics.</p>
+      <p>In the middle of it all sat Squad C-7, now complete with their newest honorary chaos gremlin: Trollin.</p>
+      <p>How Calvin convinced him to join lunch was a mystery, but here he was, already locked in a petty squabble with Calvin over who got to sit beside Velmira.</p>
+      <p>“She clearly said I could sit here,” Calvin argued, elbowing his way in.</p>
+      <p>“She didn’t say you, she said ‘someone,’ and that someone has two working brain cells,” Trollin growled.</p>
+      <p>Velmira pinched the bridge of her nose. “You two realize I can sit alone, right?”</p>
+      <p>Neither of them backed down.</p>
+      <p>Eventually, everyone settled. They dug into their food, filling the table with everything from noodles to whatever questionable meat Rio found appetizing.</p>
+      <p>Mid-bite, Calvin suddenly smacked the table. “I have a mission!”</p>
+      <p>“Let me guess,” Rio sighed. “It’s dumb.”</p>
+      <p>Calvin ignored him. “Kael! You gotta patch things up with Selene.”</p>
+      <p>Kael, chewing quietly, blinked. “...What? Why? I didn’t do anything.”</p>
+      <p>“Exactly! When dealing with girls,” Calvin said, raising a wise finger, “you apologize even when you don’t know what you did wrong. It’s like rule one.”</p>
+      <p>A hand smacked the back of his head.</p>
+      <p>“Don’t teach him that,” Velmira muttered, still holding her tray like a weapon.</p>
+      <p>She turned to Kael, softening. “Look, maybe she felt… I don’t know, overshadowed. You did win first place. Got all the attention. That stuff stings sometimes.”</p>
+      <p>Calvin and Trollin stared at her like she just spoke ancient magic.</p>
+      <p>She caught their ears. “Try being decent humans. It won’t kill you.”</p>
+      <p>“Yeah, man,” Rio chimed in. “Also, if she joins the crew, our squad rating gets an instant power-up.”</p>
+      <p>Kael groaned. “So… we’re bribing a murder queen to upgrade the team?”</p>
+      <p>Trollin nodded solemnly. “I support this plan. Also, I may or may not have given her permission to mess with you.”</p>
+      <p>Everyone turned.</p>
+      <p>“Not that I meant it!” he quickly corrected. “It was hypothetical!”</p>
+      <p>“Cool. So I’m gonna die,” Kael muttered.</p>
+      <p>“No no,” Calvin grinned. “You're gonna apologize… like a man. Go on!”</p>
+      <p>Kael stood up, still chewing, dread in his soul.</p>
+      <p>Across the canteen, Selene sat alone — composed, elegant, and very much not radiating “please talk to me” energy.</p>
+      <p>Kael took one step, then stopped. “Do I… take anything?”</p>
+      <p>Calvin’s eyes lit up. “Of course you do! You never go without a peace offering!”</p>
+      <p>Then, like a predator striking, he snatched Rio’s juice.</p>
+      <p>“HEY! That was mine!” Rio cried.</p>
+      <p>“Now it’s diplomacy!” Calvin declared, holding the drink high with dramatic flair.</p>
+      <p>“Take this,” he added solemnly, like he was bestowing a legendary weapon. “It’s not just juice. It’s symbolic reparation.”</p>
+      <p>Kael stared at the juice. Then at Calvin. Then at his friends.</p>
+      <p>Velmira gave him a thumbs-up. “Girls like surprises. Go!”</p>
+      <p>Rio gave him a thumbs-down. “She’s going to kill you.”</p>
+      <p>Kael sighed, turned, and made his way toward her — juice trembling slightly in his hand.</p>
+      <p>And then the gods betrayed him.</p>
+      <p>Just as he reached Selene’s table, someone behind him stood up, bumping into his back.</p>
+      <p>Splash.</p>
+      <p>The juice — the cursed, betrayal-born juice — poured down over Selene’s head, soaking her perfectly kept hair, uniform, and pride.</p>
+      <p>Kael stood frozen.</p>
+      <p>Selene was still. Drenched. Her once-perfect hair clung to her face in fruit-scented vengeance, like a soggy halo of doom. A half-eaten plate now rested above her head, stuck like a crown forged in pure rage.</p>
+      <p>Then her eyes opened.</p>
+      <blockquote>“You.”</blockquote>
+      <p>Kael squeaked. Yes, squeaked.</p>
+      <blockquote>“First on the stage. Then the dorm. Then class,” she roared, rising like a goddess of wrath. “You NEVER give me peace!”</blockquote>
+      <p>She swung her plate like a battle axe. Kael ducked just in time.</p>
+      <p>He turned to his squad.</p>
+      <p>All of them had their hands on their faces, watching through their fingers like they were witnessing a tragic live-action train crash.</p>
+      <p>Kael silently mouthed: Help me.</p>
+      <p>Calvin mouthed back: RUN.</p>
+      <p>Kael didn’t wait for a second signal.</p>
+      <p>He dived out the side window and vanished like a ninja escaping his own funeral.</p>
+      <p>Later that day, the gang regrouped in the classroom.</p>
+      <p>Kael returned like a soldier from war — hair wild, uniform ripped at the sleeve, and an expression that said he’d seen things no man should see.</p>
+      <p>Calvin scooted over casually, hands up like he wasn’t the cause of the mayhem. “Hey man…”</p>
+      <p>Kael grabbed him by the collar and slowly started squeezing his neck — not hard enough to choke, but hard enough to ruin Calvin’s next three minutes.</p>
+      <blockquote>“You. And your stupid gift. And your diplomatic juice box.”</blockquote>
+      <blockquote>“My bad! My bad! I was just trying to help—”</blockquote>
+      <p>“Boys.” Velmira’s voice sliced through like a general on a battlefield.</p>
+      <p>She stepped in, pried them apart like a mom separating toddlers.</p>
+      <p>Kael collapsed into his seat, exhausted. “She lives next to me. What am I supposed to do now?”</p>
+      <p>Calvin rubbed his neck. “Okay. Maybe… more gifts.”</p>
+      <p>Kael glared.</p>
+      <p>“Right. No gifts. No juice. Not even coupons. Let me think. We’ll fix it. Promise.”</p>
+      <p>Kael looked across the room.</p>
+      <p>Selene sat at her desk — still faintly stained with juice, arms crossed, scribbling something in her notebook with deadly calm.</p>
+      <p>Was it notes?</p>
+      <p>Was it a kill list?</p>
+      <p>Kael didn’t want to know.</p>
+      <p>He slumped forward with a groan. “I’m so dead.”</p>
     </div>
- 
 
- 
- 
-
-
- 
-
+    <a href="chapter12.html" class="nav-button">Next Chapter →</a>
   </div>
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-  <script>
- 
-
- 
- 
-
-
- 
-
-    const targetDate = new Date();
- 
-
- 
- 
-
-
- 
-
-    targetDate.setDate(targetDate.getDate() + 1);
- 
-
- 
- 
-
-
- 
-
-    targetDate.setHours(0, 0, 0, 0);
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    const countdownEl = document.getElementById('countdown');
- 
-
- 
- 
-
-
- 
-
-    const chapterEl = document.getElementById('chapter');
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    function updateCountdown() {
- 
-
- 
- 
-
-
- 
-
-      const now = new Date().getTime();
- 
-
- 
- 
-
-
- 
-
-      const distance = targetDate - now;
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      if (distance <= 0) {
- 
-
- 
- 
-
-
- 
-
-        countdownEl.style.display = 'none';
- 
-
- 
- 
-
-
- 
-
-        chapterEl.style.opacity = 1;
- 
-
- 
- 
-
-
- 
-
-        document.querySelector('.coin').style.display = 'none';
- 
-
- 
- 
-
-
- 
-
-        return;
- 
-
- 
- 
-
-
- 
-
-      }
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
- 
-
- 
- 
-
-
- 
-
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
- 
-
- 
- 
-
-
- 
-
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
- 
-
- 
- 
-
-
- 
-
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    updateCountdown();
- 
-
- 
- 
-
-
- 
-
-    setInterval(updateCountdown, 1000);
- 
-
- 
- 
-
-
- 
-
-  </script>
- 
-
- 
- 
-
-
- 
-
 </body>
- 
-
- 
- 
-
-
- 
-
 </html>
+
