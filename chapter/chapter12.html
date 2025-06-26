@@ -1,1039 +1,169 @@
 <!DOCTYPE html>
- 
-
-
- 
-
- 
- 
-
-
- 
-
 <html lang="en">
- 
-
- 
- 
-
-
- 
-
 <head>
- 
-
- 
- 
-
-
- 
-
   <meta charset="UTF-8" />
- 
-
- 
- 
-
-
- 
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- 
-
- 
- 
-
-
- 
-
-  <title>Velthra | Chapter 2</title>
- 
-
- 
- 
-
-
- 
-
+  <title>Velthra | Chapter 12</title>
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&family=Inter&display=swap" rel="stylesheet">
- 
-
- 
- 
-
-
- 
-
   <style>
- 
-
- 
- 
-
-
- 
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
- 
-
- 
- 
-
-
- 
-
     body {
- 
-
- 
- 
-
-
- 
-
       background: url('../chapter-bg.webp') no-repeat center center fixed;
- 
-
- 
- 
-
-
- 
-
       background-size: cover;
- 
-
- 
- 
-
-
- 
-
       color: #f0f0f0;
- 
-
- 
- 
-
-
- 
-
       font-family: 'Inter', sans-serif;
- 
-
- 
- 
-
-
- 
-
-      overflow: hidden;
- 
-
- 
- 
-
-
- 
-
+      overflow: auto;
+      scroll-behavior: smooth;
     }
- 
-
- 
- 
-
-
- 
-
     .container {
- 
-
- 
- 
-
-
- 
-
       position: relative;
- 
-
- 
- 
-
-
- 
-
-      height: 100vh;
- 
-
- 
- 
-
-
- 
-
+      min-height: 100vh;
       width: 100vw;
- 
-
- 
- 
-
-
- 
-
       display: flex;
- 
-
- 
- 
-
-
- 
-
       justify-content: center;
- 
-
- 
- 
-
-
- 
-
       align-items: center;
- 
-
- 
- 
-
-
- 
-
       flex-direction: column;
- 
-
- 
- 
-
-
- 
-
       text-align: center;
- 
-
- 
- 
-
-
- 
-
       z-index: 1;
- 
-
- 
- 
-
-
- 
-
+      padding: 40px 20px;
     }
- 
-
- 
- 
-
-
- 
-
-    .coin {
- 
-
- 
- 
-
-
- 
-
-      width: 250px;
- 
-
- 
- 
-
-
- 
-
-      height: 250px;
- 
-
- 
- 
-
-
- 
-
-      background: url('../velthra-coin.png') no-repeat center center/contain;
- 
-
- 
- 
-
-
- 
-
-      background-color: transparent;
- 
-
- 
- 
-
-
- 
-
-      animation: spin 20s linear infinite;
- 
-
- 
- 
-
-
- 
-
-      margin-bottom: 30px;
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
-    #countdown {
- 
-
- 
- 
-
-
- 
-
-      font-size: 2rem;
- 
-
- 
- 
-
-
- 
-
-      color: #B00020;
- 
-
- 
- 
-
-
- 
-
-      font-family: 'UnifrakturCook', serif;
- 
-
- 
- 
-
-
- 
-
-      text-shadow: 0 0 10px rgba(176, 0, 32, 0.4);
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
     .chapter {
- 
-
- 
- 
-
-
- 
-
-      opacity: 0;
- 
-
- 
- 
-
-
- 
-
-      transition: opacity 2s ease;
- 
-
- 
- 
-
-
- 
-
       max-width: 800px;
- 
-
- 
- 
-
-
- 
-
-      padding: 20px;
- 
-
- 
- 
-
-
- 
-
+      text-align: left;
       font-size: 1.1rem;
- 
-
- 
- 
-
-
- 
-
       line-height: 1.6;
- 
-
- 
- 
-
-
- 
-
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
     }
- 
-
- 
- 
-
-
- 
-
     .chapter h2 {
- 
-
- 
- 
-
-
- 
-
       font-family: 'UnifrakturCook', serif;
- 
-
- 
- 
-
-
- 
-
       font-size: 2.5rem;
- 
-
- 
- 
-
-
- 
-
       color: #B00020;
- 
-
- 
- 
-
-
- 
-
       margin-bottom: 20px;
- 
-
- 
- 
-
-
- 
-
+      text-align: center;
     }
- 
-
- 
- 
-
-
- 
-
-    .overlay {
- 
-
- 
- 
-
-
- 
-
-      position: absolute;
- 
-
- 
- 
-
-
- 
-
-      top: 0;
- 
-
- 
- 
-
-
- 
-
-      left: 0;
- 
-
- 
- 
-
-
- 
-
-      width: 100%;
- 
-
- 
- 
-
-
- 
-
-      height: 100%;
- 
-
- 
- 
-
-
- 
-
-      background: rgba(0, 0, 0, 0.1);
- 
-
- 
- 
-
-
- 
-
-      z-index: 0;
- 
-
- 
- 
-
-
- 
-
+    .chapter p {
+      margin-bottom: 16px;
     }
- 
-
- 
- 
-
-
- 
-
-    @keyframes spin {
- 
-
- 
- 
-
-
- 
-
-      from { transform: rotateY(0deg); }
- 
-
- 
- 
-
-
- 
-
-      to { transform: rotateY(360deg); }
- 
-
- 
- 
-
-
- 
-
+    .chapter blockquote {
+      font-style: italic;
+      margin: 16px 0;
+      color: #ccc;
     }
- 
-
- 
- 
-
-
- 
-
+    .nav-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 25px;
+      background-color: #B00020;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
   </style>
- 
-
- 
- 
-
-
- 
-
 </head>
- 
-
- 
- 
-
-
- 
-
 <body>
- 
-
- 
- 
-
-
- 
-
-  <div class="overlay"></div>
- 
-
- 
- 
-
-
- 
-
   <div class="container">
- 
+    <a href="../index.html" class="nav-button">🏠 Home</a>
+    <a href="chapter11.html" class="nav-button">← Back to Chapter 11</a>
 
- 
- 
+    <div class="chapter">
+      <h2>VELTHRA<br>Chapter 12 – Blood and Sweat</h2>
 
-
- 
-
-    <div class="coin"></div>
- 
-
- 
- 
-
-
- 
-
-    <div id="countdown"></div>
- 
-
- 
- 
-
-
- 
-
-    <div class="chapter" id="chapter">
- 
-
- 
- 
-
-
- 
-
-      <h2>Chapter two: Echoes Beneath the Ash</h2>
- 
-
- 
- 
-
-
- 
-
-      <p>
- 
-
- 
- 
-
-
- 
-
-        The silence of the ruins was deafening. Where once stood towers kissed by the sky,
- 
-
- 
- 
-
-
- 
-
-        now only broken spires whispered to the wind. Deep beneath the surface, the relic stirred...
- 
-
- 
- 
-
-
- 
-
-      </p>
- 
-
- 
- 
-
-
- 
-
+      <p>The bell rang sharp and cold across the academy.</p>
+      <p>The students were led to the training grounds — a massive open field surrounded by concrete walls and a looming observation tower. The sun beat down mercilessly, and even the birds had the sense to stay quiet.</p>
+      <p>Their instructor stood waiting. A broad-chested, scar-faced man with a presence that could shake mountains. His sheer energy level seemed capable of out-Calvin-ing Calvin — and that was saying something.</p>
+      <blockquote>“Alright, listen up, shrimps!”</blockquote>
+      <p>he barked, voice like a military airhorn.</p>
+      <blockquote>“Out here, we train your bodies, sharpen your minds, and grind you into something that might resemble a soldier. So let’s get started.”</blockquote>
+      <p>He cracked his neck like it was a threat.</p>
+      <blockquote>“Start running. I don’t want to see anyone slacking.”</blockquote>
+      <blockquote>“Uh… how many laps, sir?”</blockquote>
+      <p>someone from the crowd asked, timid.</p>
+      <p>The instructor’s glare could’ve melted steel.</p>
+      <blockquote>“IF I WANTED YOU TO KNOW HOW MANY ROUNDS, I’D HAVE SAID! NOW SHUT UP AND START RUNNING!”</blockquote>
+      <p>The group scattered into motion like frightened deer.</p>
+      <p>A few laps in, two boys peeled off from the running group and stumbled to the sidelines.</p>
+      <blockquote>“Ugh… I’m done,”</blockquote>
+      <p>one groaned, hands on knees.</p>
+      <blockquote>“That’s it. I’m finished.”</blockquote>
+      <blockquote>“Yeah,”</blockquote>
+      <p>the other chimed in.</p>
+      <blockquote>“We, need… conserving energy. For, like… bird watching.”</blockquote>
+      <p>Their voices were faint, too far off to recognize.</p>
+      <p>The rest of the class kept running.</p>
+      <p>After a minute, Velmira frowned.</p>
+      <blockquote>“Hey… is it just me, or is it suddenly really quiet?”</blockquote>
+      <p>Kael glanced around.</p>
+      <blockquote>“You're right. I don’t hear any wheezing. Or complaining. Or—”</blockquote>
+      <blockquote>“Dumb flirting attempts?”</blockquote>
+      <p>Trollin added.</p>
+      <p>They all exchanged confused glances mid-run.</p>
+      <blockquote>“…Something’s wrong,”</blockquote>
+      <p>Kael muttered.</p>
+      <p>A few more strides later, the group rounded a bend—</p>
+      <p>And came to a jarring stop.</p>
+      <p>There, lying flat on their backs like peaceful casualties of war, were two very familiar idiots.</p>
+      <p>Calvin and Rio. Half-buried in dust. Completely motionless.</p>
+      <blockquote>“Wait… is that—?”</blockquote>
+      <p>Velmira squinted.</p>
+      <blockquote>“…Our idiots?”</blockquote>
+      <p>Kael finished.</p>
+      <p>Trollin knelt briefly, poking Calvin’s forehead.</p>
+      <blockquote>“Yep. They’re alive. Just… rebooting.”</blockquote>
+      <blockquote>“They really did go down,”</blockquote>
+      <p>Velmira whispered in awe.</p>
+      <blockquote>“That explains the silence.”</blockquote>
+      <blockquote>“They took the chaos with them,”</blockquote>
+      <p>Kael muttered, looking genuinely disturbed.</p>
+      <p>The instructor stomped over like thunder on legs.</p>
+      <blockquote>“Something funny over there?”</blockquote>
+      <p>Everyone immediately stood straight.</p>
+      <blockquote>“No, sir!”</blockquote>
+      <blockquote>“You wanna join them? I can make that happen real fast.”</blockquote>
+      <p>Everyone shook their heads faster than their legs were moving.</p>
+      <blockquote>“Then what are you WAITING FOR? MOVE!”</blockquote>
+      <p>And with that, the squad bolted forward — away from the cratered corpses of their friends and the wrath of a coach who wasn’t even winded.</p>
+      <p>By the end of the session, students were dropping like flies.</p>
+      <p>One by one, the coach began pulling them off the field, near collapse.</p>
+      <p>Only three figures remained, still running.</p>
+      <p>Trollin. Kael. Selene.</p>
+      <p>No banter. No whining. Just relentless rhythm, dust rising around their feet, their bodies moving on sheer willpower alone.</p>
+      <p>The rest of the class sat off to the side, nursing bruises and egos, watching silently.</p>
+      <p>Whatever was pushing those three forward — pride, rage, or stubborn spite — it was clear:</p>
+      <p>This wasn’t just training anymore.</p>
+      <p>It was something else.</p>
+      <p>The sun hung low now, casting long shadows across the worn-out field.</p>
+      <p>The instructor checked his watch.</p>
+      <blockquote>“Halt. At ease.”</blockquote>
+      <p>The three still running — Kael, Selene, and Trollin — finally dropped.</p>
+      <p>They didn’t sit. They didn’t stagger. They collapsed, hitting the ground like marionettes whose strings had been cut.</p>
+      <p>The coach walked past them without slowing.</p>
+      <blockquote>“Good.”</blockquote>
+      <p>That was all he said. But for a second, the entire field went still. No groaning. No joking. Just silence.</p>
+      <p>And somehow, that one word felt louder than a speech. Kael couldn’t help the faint, exhausted smile tugging at his face.</p>
+      <blockquote>“Based on today’s performance,”</blockquote>
+      <p>the instructor called out, turning to the rest of the gasping, crumpled students,</p>
+      <blockquote>“you’ll be split into new groups. Assignments will be posted tomorrow on the notice board.”</blockquote>
+      <p>He jerked his thumb toward the two dirt-covered bodies still lying peacefully in their shallow trenches.</p>
+      <blockquote>“Someone collect these two pieces of trash and drag them back to the dorms.”</blockquote>
+      <p>A few students groaned. Trollin, already sitting upright, shook his head.</p>
+      <blockquote>“Should’ve left them as fertilizer.”</blockquote>
+      <blockquote>“We are fertilizer,”</blockquote>
+      <p>Calvin mumbled, face down in the dirt. “Emotionally.”</p>
+      <p>The coach gave them all one final glance.</p>
+      <blockquote>“Dismissed.”</blockquote>
+      <p>And with that, the field emptied — boots dragging, legs trembling — but hearts pounding a little stronger.</p>
+      <p>Because somehow, even through the dirt and the madness… it still felt like victory.</p>
     </div>
- 
 
- 
- 
-
-
- 
-
+    <a href="chapter13.html" class="nav-button">Next Chapter →</a>
   </div>
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-  <script>
- 
-
- 
- 
-
-
- 
-
-    const targetDate = new Date();
- 
-
- 
- 
-
-
- 
-
-    targetDate.setDate(targetDate.getDate() + 1);
- 
-
- 
- 
-
-
- 
-
-    targetDate.setHours(0, 0, 0, 0);
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    const countdownEl = document.getElementById('countdown');
- 
-
- 
- 
-
-
- 
-
-    const chapterEl = document.getElementById('chapter');
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    function updateCountdown() {
- 
-
- 
- 
-
-
- 
-
-      const now = new Date().getTime();
- 
-
- 
- 
-
-
- 
-
-      const distance = targetDate - now;
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      if (distance <= 0) {
- 
-
- 
- 
-
-
- 
-
-        countdownEl.style.display = 'none';
- 
-
- 
- 
-
-
- 
-
-        chapterEl.style.opacity = 1;
- 
-
- 
- 
-
-
- 
-
-        document.querySelector('.coin').style.display = 'none';
- 
-
- 
- 
-
-
- 
-
-        return;
- 
-
- 
- 
-
-
- 
-
-      }
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
- 
-
- 
- 
-
-
- 
-
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
- 
-
- 
- 
-
-
- 
-
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
- 
-
- 
- 
-
-
- 
-
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
- 
-
- 
- 
-
-
- 
-
-    }
- 
-
- 
- 
-
-
- 
-
-
- 
-
- 
- 
-
-
- 
-
-    updateCountdown();
- 
-
- 
- 
-
-
- 
-
-    setInterval(updateCountdown, 1000);
- 
-
- 
- 
-
-
- 
-
-  </script>
- 
-
- 
- 
-
-
- 
-
 </body>
- 
-
- 
- 
-
-
- 
-
 </html>
+
